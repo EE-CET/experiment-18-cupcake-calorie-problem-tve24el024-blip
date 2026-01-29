@@ -8,12 +8,11 @@ class Cupcake{
         Arrays.sort(calories);
 
         long miles = 0;
-        long power = 1; // represents 2^j
 
-        // Traverse from largest to smallest calorie
-        for (int i = n - 1; i >= 0; i--) {
-            miles += calories[i] * power;
-            power *= 2;
+        // Apply from largest to smallest explicitly
+        for (int i = 0; i < n; i++) {
+            int calorie = calories[n - 1 - i]; // reverse access
+            miles += calorie * (1L << i);      // 2^i
         }
 
         return miles;
