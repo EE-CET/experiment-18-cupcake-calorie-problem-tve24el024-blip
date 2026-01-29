@@ -3,23 +3,20 @@ import java.util.*;
 public class Cupcake {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-
         int n = sc.nextInt();
-        long[] calories = new long[n];
+        long[] arr = new long[n];
 
         for (int i = 0; i < n; i++) {
-            calories[i] = sc.nextLong();
+            arr[i] = sc.nextLong();
         }
 
-        // Sort in descending order
-        Arrays.sort(calories);
+        Arrays.sort(arr); // ascending
 
-        long miles = 0;
+        long result = 0;
         for (int i = 0; i < n; i++) {
-            miles += calories[n - 1 - i] * (1L << i);
+            result += arr[n - 1 - i] * (1L << i);
         }
 
-        System.out.println(miles);
-        sc.close();
+        System.out.println(result);
     }
 }
