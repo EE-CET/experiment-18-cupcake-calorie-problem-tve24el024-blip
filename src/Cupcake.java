@@ -1,35 +1,42 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
-class Cupcake{
+public class Cupcake {
 
-    static long minimumMiles(int[] calories, int n) {
-        // Sort ascending
-        Arrays.sort(calories);
+    public static long calcount(int n, int[] arr) {
+        long calories = 0;
+        long multiplier = 1;
 
-        long miles = 0;
-        long power = 1; // 2^0
-
-        // Traverse from largest to smallest
-        for (int i = n - 1; i >= 0; i--) {
-            miles += calories[i] * power;
-            power <<= 1; // multiply by 2
+        for (int i = 0; i < n; i++) {
+            calories += arr[i] * multiplier;
+            multiplier *= 2;
         }
+        return calories;
+    }
 
-        return miles;
+    public static void bubblesort(int n, int[] arr) {
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (arr[j] < arr[j + 1]) {
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
     }
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);
 
-        int n = sc.nextInt();
-        int[] calories = new int[n];
+        int n = scan.nextInt();
+        int[] arr = new int[n];
 
         for (int i = 0; i < n; i++) {
-            calories[i] = sc.nextInt();
+            arr[i] = scan.nextInt();
         }
 
-        System.out.print(minimumMiles(calories, n));
-        sc.close();
+        bubblesort(n, arr);
+        long result = calcount(n, arr);
+        System.out.println(result);
     }
 }
