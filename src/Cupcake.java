@@ -4,14 +4,16 @@ import java.util.Scanner;
 class Cupcake{
 
     static long minimumMiles(int[] calories, int n) {
-        Arrays.sort(calories); // ascending
+        // Sort ascending
+        Arrays.sort(calories);
 
         long miles = 0;
-        long power = 2; // ⚠️ START FROM 2, NOT 1
+        long power = 1; // 2^0
 
+        // Traverse from largest to smallest
         for (int i = n - 1; i >= 0; i--) {
             miles += calories[i] * power;
-            power *= 2;
+            power <<= 1; // multiply by 2
         }
 
         return miles;
